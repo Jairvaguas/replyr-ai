@@ -56,7 +56,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             ))}
           </div>
           <p className="text-slate-300 italic mb-4 text-sm leading-relaxed">
-            "Antes tardaba horas respondiendo reseñas. Ahora recibo el borrador en el email y lo publico en segundos. Mi calificación subió de 4.1 a 4.6 estrellas en 2 meses."
+            &quot;Antes tardaba horas respondiendo reseñas. Ahora recibo el borrador en el email y lo publico en segundos. Mi calificación subió de 4.1 a 4.6 estrellas en 2 meses.&quot;
           </p>
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-green-500 text-white flex items-center justify-center font-bold text-xs shrink-0">

@@ -7,7 +7,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsToolti
 import { Badge } from "@/components/ui/badge";
 
 export default function AdminClient() {
-  const [data, setData] = useState<any>(null);
+  type TableRow = { email: string; plan?: string; status?: string; trial_ends_at?: string; loc_count?: number; reply_count?: number; registration_date?: string;[key: string]: unknown };
+  type AdminData = { metrics: Record<string, unknown>; table: TableRow[]; growthChart: Record<string, unknown>[];[key: string]: unknown };
+  const [data, setData] = useState<AdminData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,7 +85,7 @@ export default function AdminClient() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
-                {table.map((row: any, i: number) => (
+                {table.map((row: TableRow, i: number) => (
                   <tr key={i} className="hover:bg-slate-50/80 transition-colors">
                     <td className="px-6 py-4 font-medium text-slate-900">{row.email}</td>
                     <td className="px-6 py-4 uppercase font-bold text-xs"><span className={`px-2.5 py-1 rounded-md ${row.plan === 'pro' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-700'}`}>{row.plan || 'trial'}</span></td>
@@ -110,7 +112,7 @@ export default function AdminClient() {
   );
 }
 
-function Card({ icon, title, value }: any) {
+function Card({ icon, title, value }: { icon: React.ReactNode; title: string; value: string | number }) {
   return (
     <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group relative overflow-hidden">
       <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-bl-full pointer-events-none"></div>

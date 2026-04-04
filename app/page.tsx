@@ -115,7 +115,7 @@ export default function LandingPage() {
                     <Star className="w-4 h-4 text-slate-300"/>
                   </div>
                   <p className="text-slate-600 bg-slate-50 p-4 rounded-lg border-l-4 border-slate-300 italic">
-                    "El servicio fue muy lento y el pedido llegó frío. Una decepción."
+                    &quot;El servicio fue muy lento y el pedido llegó frío. Una decepción.&quot;
                   </p>
                 </div>
 
@@ -421,7 +421,7 @@ export default function LandingPage() {
                     <Star className="w-5 h-5 fill-current" />
                   </div>
                   <p className="text-slate-600 italic mb-8 leading-relaxed">
-                    "Antes tardaba horas respondiendo reseñas. Ahora recibo el borrador en el email y lo publico en segundos. Mi calificación subió de 4.1 a 4.6 estrellas en 2 meses."
+                    &quot;Antes tardaba horas respondiendo reseñas. Ahora recibo el borrador en el email y lo publico en segundos. Mi calificación subió de 4.1 a 4.6 estrellas en 2 meses.&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -446,7 +446,7 @@ export default function LandingPage() {
                     <Star className="w-5 h-5 fill-current" />
                   </div>
                   <p className="text-slate-600 italic mb-8 leading-relaxed">
-                    "Las alertas de reseñas negativas me salvaron varias veces. Puedo responder en minutos. La IA entiende perfectamente el tono profesional que necesitamos."
+                    &quot;Las alertas de reseñas negativas me salvaron varias veces. Puedo responder en minutos. La IA entiende perfectamente el tono profesional que necesitamos.&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -471,7 +471,7 @@ export default function LandingPage() {
                     <Star className="w-5 h-5 fill-current" />
                   </div>
                   <p className="text-slate-600 italic mb-8 leading-relaxed">
-                    "Gestionamos 5 sucursales y Resplyr nos ahorra horas cada semana. El precio es muy accesible comparado con otras herramientas que vimos."
+                    &quot;Gestionamos 5 sucursales y Resplyr nos ahorra horas cada semana. El precio es muy accesible comparado con otras herramientas que vimos.&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">

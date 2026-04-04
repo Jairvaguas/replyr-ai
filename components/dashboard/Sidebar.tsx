@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { LayoutDashboard, Settings, ChevronLeft, ChevronRight, Plus, MapPin, Sparkles } from "lucide-react";
+import { LayoutDashboard, Settings, ChevronLeft, ChevronRight, Plus, Sparkles } from "lucide-react";
 import LocationSwitcher, { LocationData } from "./LocationSwitcher";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";

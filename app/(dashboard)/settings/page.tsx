@@ -7,6 +7,7 @@ import { Moon, Sun, Bell, Mail, LogOut, User as UserIcon, CreditCard } from "luc
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export default function SettingsPage() {
   const { user, isLoaded } = useUser();
@@ -22,7 +23,8 @@ export default function SettingsPage() {
   const [weeklySummary, setWeeklySummary] = useState(false);
 
   // Billing state
-  const [subStatus, setSubStatus] = useState<any>(null);
+  type SubStatus = { status: string; plan?: string; days_remaining?: number; current_period_ends_at?: string;[key: string]: unknown };
+  const [subStatus, setSubStatus] = useState<SubStatus | null>(null);
   const [subLoading, setSubLoading] = useState(true);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelling, setCancelling] = useState(false);
@@ -67,7 +69,7 @@ export default function SettingsPage() {
     }
   };
 
-  const saveSettings = async (updates: any) => {
+  const saveSettings = async (updates: Record<string, unknown>) => {
     setSaving(true);
     try {
       await fetch("/api/settings", {
@@ -244,7 +246,7 @@ export default function SettingsPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             {user?.imageUrl ? (
-              <img src={user.imageUrl} alt="Avatar" className="w-16 h-16 rounded-full border shadow-sm" />
+              <Image src={user.imageUrl} alt="Avatar" width={64} height={64} className="w-16 h-16 rounded-full border shadow-sm" unoptimized />
             ) : (
               <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xl font-bold">
                 {user?.firstName?.charAt(0) || "U"}

@@ -95,7 +95,7 @@ export default function ReviewCard({ review, onGenerate, onApprove }: Props) {
 
         {/* User Comment */}
         <p className="text-slate-700 mb-6 bg-slate-50 p-4 rounded-xl text-sm leading-relaxed border-l-2 border-slate-200 line-clamp-3 hover:line-clamp-none transition-all">
-          "{review.comment}"
+          &quot;{review.comment}&quot;
         </p>
 
         {/* AI Reply Area */}

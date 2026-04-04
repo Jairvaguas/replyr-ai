@@ -7,10 +7,13 @@ import StatsBar from "@/components/dashboard/StatsBar";
 import ReviewCard from "@/components/dashboard/ReviewCard";
 import EmptyState from "@/components/dashboard/EmptyState";
 
+interface LocationItem { id: string; name: string;[key: string]: unknown; }
+interface ReviewItem { id: string; location_id: string; reviewer_name?: string; rating: number; comment?: string; review_date: string; replied?: boolean; ai_reply_draft?: string | null;[key: string]: unknown; }
+
 interface Props {
   isConnected: boolean;
-  locations: any[];
-  reviews: any[];
+  locations: LocationItem[];
+  reviews: ReviewItem[];
   userName: string;
   userAvatar: string;
 }
@@ -38,7 +41,6 @@ export default function ClientDashboard({ isConnected, locations, reviews, userN
   };
 
   const locationReviews = reviews.filter(r => r.location_id === activeLocationId);
-  const pendingCount = locationReviews.filter(r => !r.ai_reply_draft && !r.replied).length;
   const answeredCount = locationReviews.filter(r => r.replied).length;
   
   const totalReviewsThisMonth = locationReviews.length;

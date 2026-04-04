@@ -12,8 +12,8 @@ export default async function DashboardPage() {
   console.log("Current Clerk UserID:", userId);
 
   let isConnected = false;
-  let localLocations: any[] = [];
-  let userReviews: any[] = [];
+  let localLocations: { id: string; name: string;[key: string]: unknown }[] = [];
+  let userReviews: { id: string; location_id: string; reviewer_name?: string; rating: number; comment?: string; review_date: string; replied?: boolean; ai_reply_draft?: string | null;[key: string]: unknown }[] = [];
   
   if (userId) {
     const { data: accounts } = await supabaseServer
