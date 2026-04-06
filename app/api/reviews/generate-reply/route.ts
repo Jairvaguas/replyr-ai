@@ -17,7 +17,17 @@ export async function POST(req: Request) {
 
   if (error || !review) return NextResponse.json({ error: "Reseña no encontrada" }, { status: 404 });
 
-  const promptText = `Eres el asistente de respuestas de un negocio local. 
+  const { data: location } = await supabaseServer
+    .from('locations')
+    .select('name, address, business_type')
+    .eq('id', review.location_id)
+    .single();
+
+  const promptText = `Eres el asistente de respuestas de "${location?.name || 'un negocio local'}", 
+un negocio ubicado en ${location?.address || 'Latinoamérica'}.
+Tipo de negocio: ${location?.business_type || 'negocio local'}.
+
+Tu tarea es redactar una respuesta profesional, cálida y auténtica a la siguiente reseña de Google. 
 Tu tarea es redactar una respuesta profesional, cálida y auténtica a la siguiente reseña de Google.
 
 Datos de la reseña:

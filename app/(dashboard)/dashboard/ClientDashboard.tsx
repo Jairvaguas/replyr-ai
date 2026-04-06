@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import Sidebar from "@/components/dashboard/Sidebar";
 import StatsBar from "@/components/dashboard/StatsBar";
@@ -23,6 +23,34 @@ export default function ClientDashboard({ isConnected, locations, reviews, userN
   const [activeLocationId, setActiveLocationId] = useState<string | null>(
     locations.length > 0 ? locations[0].id : null
   );
+
+  const [showTypeModal, setShowTypeModal] = useState(false);
+  const [businessType, setBusinessType] = useState("");
+  const [customType, setCustomType] = useState("");
+  const [isSavingType, setIsSavingType] = useState(false);
+
+  const options = [
+    "Restaurante / Cafetería",
+    "Clínica / Consultorio",
+    "Salón de belleza / Spa",
+    "Taller / Servicio técnico",
+    "Hotel / Hospedaje",
+    "Tienda / Comercio",
+    "Otro"
+  ];
+
+  const activeLocation = locations.find(l => l.id === activeLocationId);
+
+  useEffect(() => {
+    if (activeLocation && (!activeLocation.business_type || activeLocation.business_type === 'negocio local')) {
+      setShowTypeModal(true);
+      setBusinessType("");
+      setCustomType("");
+    } else {
+      setShowTypeModal(false);
+    }
+  }, [activeLocation]);
+
 
   const handleConnect = () => {
     window.location.href = "/api/auth/google";
@@ -50,6 +78,65 @@ export default function ClientDashboard({ isConnected, locations, reviews, userN
 
   return (
     <div className="min-h-screen bg-slate-50 flex w-full">
+
+      {showTypeModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl">
+            <h3 className="text-2xl font-bold text-slate-900 mb-2">Cuéntanos sobre tu negocio</h3>
+            <p className="text-slate-600 mb-6">Para que la IA genere respuestas perfectas, indícanos qué tipo de negocio es <strong>{activeLocation?.name}</strong>.</p>
+            
+            <div className="space-y-3 mb-6">
+              {options.map(opt => (
+                <label key={opt} className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer hover:bg-slate-50 transition-colors ${businessType === opt ? 'border-blue-600 bg-blue-50/50' : 'border-slate-200'}`}>
+                  <input type="radio" name="btype" value={opt} checked={businessType === opt} onChange={() => setBusinessType(opt)} className="w-5 h-5 text-blue-600 focus:ring-blue-600" />
+                  <span className="font-medium text-slate-700">{opt}</span>
+                </label>
+              ))}
+              
+              {businessType === "Otro" && (
+                <input 
+                  type="text" 
+                  placeholder="Ej: Agencia de marketing, Gimnasio..." 
+                  className="w-full mt-2 p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none"
+                  value={customType}
+                  onChange={(e) => setCustomType(e.target.value)}
+                />
+              )}
+            </div>
+
+            <button 
+              onClick={async () => {
+                const finalType = businessType === "Otro" ? customType : businessType;
+                if (!finalType.trim()) return;
+                
+                setIsSavingType(true);
+                try {
+                  const res = await fetch(`/api/locations/${activeLocationId}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ business_type: finalType })
+                  });
+                  if (res.ok) {
+                    setShowTypeModal(false);
+                    if (activeLocation) {
+                      activeLocation.business_type = finalType;
+                    }
+                  }
+                } catch (e) {
+                  console.error(e);
+                } finally {
+                  setIsSavingType(false);
+                }
+              }}
+              disabled={!businessType || (businessType === "Otro" && !customType.trim()) || isSavingType}
+              className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {isSavingType ? "Guardando..." : "Guardar y continuar"}
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Mobile Menu Button - Top Right */}
       <button 
         onClick={() => setIsMobileMenuOpen(true)}
