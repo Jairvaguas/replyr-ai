@@ -598,8 +598,8 @@ export default function LandingPage() {
             {/* Col 3 */}
             <div className="flex flex-col gap-3">
               <h4 className="text-white font-bold mb-2">Legal</h4>
-              <Link href="#" className="text-sm hover:text-white transition-colors">Política de Privacidad</Link>
-              <Link href="#" className="text-sm hover:text-white transition-colors">Términos del Servicio</Link>
+              <Link href="/privacidad" className="text-sm hover:text-white transition-colors">Política de Privacidad</Link>
+              <Link href="/terminos" className="text-sm hover:text-white transition-colors">Términos del Servicio</Link>
             </div>
             {/* Col 4 */}
             <div className="flex flex-col gap-3">
