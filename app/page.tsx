@@ -389,11 +389,14 @@ export default function LandingPage() {
               {/* PLAN BÁSICO */}
               <div className="bg-slate-50 rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative p-8 flex flex-col h-full">
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Plan Starter</h3>
-                <div className="flex items-baseline gap-2 mb-2">
+                <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-5xl font-extrabold tracking-tight text-slate-900">${isAnnual ? '16' : '19'}</span>
                   <span className="text-slate-500 font-medium">USD / mes</span>
                 </div>
-                <p className="text-sm text-slate-600 mb-8 border-b border-slate-200 pb-8">Para negocios con 1 ubicación</p>
+                <div className="h-5 mb-3 flex items-center">
+                  {isAnnual && <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">(facturado $192 / año)</span>}
+                </div>
+                <p className="text-sm text-slate-600 mb-6 border-b border-slate-200 pb-6">Para negocios con 1 ubicación</p>
                 
                 <ul className="space-y-4 mb-8 flex-1">
                   <li className="flex items-start gap-3 text-slate-600">
@@ -428,11 +431,14 @@ export default function LandingPage() {
                   Más popular
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Plan Growth</h3>
-                <div className="flex items-baseline gap-2 mb-2">
+                <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-5xl font-extrabold tracking-tight text-slate-900">${isAnnual ? '33' : '39'}</span>
                   <span className="text-slate-500 font-medium">USD / mes</span>
                 </div>
-                <p className="text-sm text-slate-600 mb-8 border-b border-slate-200 pb-8">Para negocios en expansión</p>
+                <div className="h-5 mb-3 flex items-center">
+                  {isAnnual && <span className="text-xs font-medium text-blue-700 bg-blue-100 px-2 py-0.5 rounded">(facturado $396 / año)</span>}
+                </div>
+                <p className="text-sm text-slate-600 mb-6 border-b border-slate-200 pb-6">Para negocios en expansión</p>
                 
                 <ul className="space-y-4 mb-8 flex-1">
                   <li className="flex items-start gap-3 text-slate-600">
@@ -463,11 +469,14 @@ export default function LandingPage() {
               {/* PLAN BUSINESS */}
               <div className="bg-slate-50 rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative p-8 flex flex-col h-full">
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Plan Multi-ubicación</h3>
-                <div className="flex items-baseline gap-2 mb-2">
+                <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-5xl font-extrabold tracking-tight text-slate-900">${isAnnual ? '67' : '79'}</span>
                   <span className="text-slate-500 font-medium">USD / mes</span>
                 </div>
-                <p className="text-sm text-slate-600 mb-8 border-b border-slate-200 pb-8">Para cadenas y franquicias</p>
+                <div className="h-5 mb-3 flex items-center">
+                  {isAnnual && <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">(facturado $804 / año)</span>}
+                </div>
+                <p className="text-sm text-slate-600 mb-6 border-b border-slate-200 pb-6">Para cadenas y franquicias</p>
                 
                 <ul className="space-y-4 mb-8 flex-1">
                   <li className="flex items-start gap-3 text-slate-600">
