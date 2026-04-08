@@ -55,6 +55,7 @@ export default async function DashboardPage() {
         reviews={userReviews}
         userName={user?.firstName || user?.username || "Usuario"}
         userAvatar={user?.imageUrl || ""}
+        userId={userId || ""}
     />
   );
 }

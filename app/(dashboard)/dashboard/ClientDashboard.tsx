@@ -6,6 +6,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import StatsBar from "@/components/dashboard/StatsBar";
 import ReviewCard from "@/components/dashboard/ReviewCard";
 import EmptyState from "@/components/dashboard/EmptyState";
+import AnalyticsSection from "@/components/dashboard/AnalyticsSection";
 
 interface LocationItem { id: string; name: string;[key: string]: unknown; }
 interface ReviewItem { id: string; location_id: string; reviewer_name?: string; rating: number; comment?: string; review_date: string; replied?: boolean; ai_reply_draft?: string | null;[key: string]: unknown; }
@@ -16,9 +17,10 @@ interface Props {
   reviews: ReviewItem[];
   userName: string;
   userAvatar: string;
+  userId: string;
 }
 
-export default function ClientDashboard({ isConnected, locations, reviews, userName, userAvatar }: Props) {
+export default function ClientDashboard({ isConnected, locations, reviews, userName, userAvatar, userId }: Props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLocationId, setActiveLocationId] = useState<string | null>(
     locations.length > 0 ? locations[0].id : null
@@ -207,6 +209,15 @@ export default function ClientDashboard({ isConnected, locations, reviews, userN
                          />
                        ))}
                     </div>
+                 )}
+
+                 {/* Analytics Section below reviews */}
+                 {activeLocationId && (
+                    <AnalyticsSection 
+                       locationId={activeLocationId} 
+                       userId={userId} 
+                       locationName={activeLocation?.name || ""} 
+                    />
                  )}
                </>
             )}
